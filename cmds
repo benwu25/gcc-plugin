@@ -1,0 +1,6 @@
+: how to use gcc_data? what is it supposed to be for each callback?
+: cool thing: nm -C demangles names
+
+g++ -fPIC -shared -I/usr/lib/gcc/x86_64-linux-gnu/13/plugin/include -L/usr/lib/gcc/x86_64-linux-gnu/13/plugin -o libGCCPlugin.so gcc-plugin.cc -lcc1plugin
+
+g++ -fplugin=./libGCCPlugin.so main.cpp
