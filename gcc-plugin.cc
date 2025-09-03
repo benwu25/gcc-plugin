@@ -14,6 +14,7 @@ void handle_function(void *gcc_data, void *user_data) {
   } else {
     tree decl1 = (tree) gcc_data;
     std::cout << IDENTIFIER_POINTER (DECL_NAME (decl1)) << "\n";
+    tree function_body = DECL_SAVED_TREE (decl1); // see tree-core.h:1964
   }
 }
 

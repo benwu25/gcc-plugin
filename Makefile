@@ -10,5 +10,5 @@ test-debug: all
 clean:
 	rm libGCCPlugin.so
 
-clean2:
+clean2: clean
 	rm a.out
