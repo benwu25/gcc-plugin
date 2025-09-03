@@ -8,13 +8,12 @@ int plugin_is_GPL_compatible = 0;
 
 // callbacks
 void handle_function(void *gcc_data, void *user_data) {
-  std::cout << "well hullo!\n";
   if (gcc_data == NULL) {
-    std::cout << "data is NULL\n";
+    std::cerr << "no data\n";
+    return;
   } else {
-    std::cout << "data is not NULL, what is it?\n"; // a tree decl :P true for START and FINISH.
     tree decl1 = (tree) gcc_data;
-    std::cout << "tree code is: " << TREE_CODE(decl1) << "\n";
+    std::cout << IDENTIFIER_POINTER (DECL_NAME (decl1)) << "\n";
   }
 }
 
