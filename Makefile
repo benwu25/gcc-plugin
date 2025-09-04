@@ -1,5 +1,5 @@
 all:
-	g++ -g -Wall -Wno-unused-variable -Werror -fPIC -shared -I/usr/lib/gcc/x86_64-linux-gnu/13/plugin/include -L/usr/lib/gcc/x86_64-linux-gnu/13/plugin -o libGCCPlugin.so gcc-plugin.cc
+	g++ -g -Wall -Wextra -fanalyzer -Wno-unused-variable -Wno-unused-parameter -Werror -fPIC -shared -I/usr/lib/gcc/x86_64-linux-gnu/13/plugin/include -L/usr/lib/gcc/x86_64-linux-gnu/13/plugin -o libGCCPlugin.so gcc-plugin.cc
 
 test: all
 	g++ -fplugin=./libGCCPlugin.so main.cpp
