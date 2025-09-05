@@ -2,6 +2,7 @@
 #include <plugin.h>
 #include <coretypes.h>
 #include <tree.h>
+#include <tree-iterator.h>
 #include <iostream>
 
 int plugin_is_GPL_compatible = 0;
@@ -15,6 +16,20 @@ void handle_function(void *gcc_data, void *user_data) {
     tree decl1 = (tree) gcc_data;
     std::cout << IDENTIFIER_POINTER (DECL_NAME (decl1)) << "\n";
     tree function_body = DECL_SAVED_TREE (decl1); // see tree-core.h:1964
+    if (TREE_CODE (function_body) == STATEMENT_LIST) { // yes :P
+      std::cout << "function_body is a STATEMENT_LIST\n";
+      tree_stmt_iterator it;
+      for (it = tsi_start (function_body); !tsi_end_p (it); tsi_next (&it)) {
+        tree stmt = it.ptr->stmt;
+        if (TREE_CODE (stmt) == BIND_EXPR) {
+          std::cout << "bind expr\n";
+        } else if (TREE_CODE (stmt) == RETURN_EXPR) {
+          std::cout << "return expr\n";
+        }
+      }
+    } else {
+      std::cout << "something else\n";
+    }
   }
 }
 
