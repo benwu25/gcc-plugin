@@ -102,7 +102,9 @@ public:
 
   virtual unsigned int execute(function *fun) {
 
-    // TODO: analysis/optimization on fun
+    // TODO: analysis/optimization on fun.
+    //       inspect execute on other passes. Also
+    //       look for other passes to go before/after.
     std::cerr << "my_opt_pass\n";
     return 0;
   }
