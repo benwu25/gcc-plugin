@@ -1,11 +1,11 @@
 all:
-	g++ -g -Wall -Wextra -fanalyzer -Wno-unused-variable -Wno-unused-parameter -Werror -fPIC -shared -I/usr/lib/gcc/x86_64-linux-gnu/13/plugin/include -L/usr/lib/gcc/x86_64-linux-gnu/13/plugin -o libGCCPlugin.so gcc-plugin.cc
+	/home/benwu25/Documents/mirror/install/bin/g++ -g -Wall -Wextra -fanalyzer -Wno-unused-variable -Wno-unused-but-set-variable -Wno-unused-parameter -fPIC -shared -rdynamic -fno-rtti -I/home/benwu25/Documents/mirror/install/lib/gcc/x86_64-pc-linux-gnu/16.0.0/plugin/include -L/home/benwu25/Documents/mirror/install/lib/gcc/x86_64-pc-linux-gnu/16.0.0/plugin -o libGCCPlugin.so gcc-plugin.cc -lcp1plugin
 
 test: all
-	g++ -fplugin=./libGCCPlugin.so main.cpp
+	/home/benwu25/Documents/mirror/install/bin/g++ -fplugin=./libGCCPlugin.so main.cpp
 
 test-debug: all
-	/home/benwu25/Documents/mirror/gcc-install/gcc-install/bin/g++ -fplugin=./libGCCPlugin.so main.cpp -wrapper gdb,--args
+	/home/benwu25/Documents/mirror/install/bin/g++ -fplugin=./libGCCPlugin.so main.cpp -wrapper gdb,--args
 
 clean:
 	rm libGCCPlugin.so
