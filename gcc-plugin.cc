@@ -50,25 +50,21 @@ void execute_pass(void *gcc_data, void *user_data) {
     case GIMPLE_PASS:
     {
       std::cout << "  GIMPLE_PASS\n";
-      gimple_opt_pass *gp = reinterpret_cast<gimple_opt_pass *>(pass); // not significantly useful...
-      break;                                                           // dynamic_casts don't work because GCC uses -fno-rtti
+      break;
     }
     case RTL_PASS:
     {
       std::cout << "  RTL_PASS\n";
-      rtl_opt_pass *rp = reinterpret_cast<rtl_opt_pass *>(pass);
       break;
     }
     case SIMPLE_IPA_PASS:
     {
       std::cout << "  SIMPLE_IPA_PASS\n";
-      simple_ipa_opt_pass *sipa = reinterpret_cast<simple_ipa_opt_pass *>(pass);
       break;
     }
     case IPA_PASS:
     {
       std::cout << "  IPA_PASS\n";
-      ipa_opt_pass_d *ipd = reinterpret_cast<ipa_opt_pass_d *>(pass);
       break;
     }
   }
@@ -105,7 +101,9 @@ public:
   my_opt_pass(gcc::context *ctxt) : gimple_opt_pass(my_pass, ctxt) {}
 
   virtual unsigned int execute(function *fun) {
-    std::cerr << "hi!\n";
+
+    // TODO: analysis/optimization on fun
+    std::cerr << "my_opt_pass\n";
     return 0;
   }
 
@@ -116,6 +114,7 @@ public:
 };
 
 int plugin_init(struct plugin_name_args *plugin_info, struct plugin_gcc_version *version) {
+
   // Register callbacks
   register_callback("GCCPlugin",
                     PLUGIN_FINISH_PARSE_FUNCTION,
