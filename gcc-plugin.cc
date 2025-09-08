@@ -1,12 +1,4 @@
-#include <gcc-plugin.h>
-#include <plugin.h>
-#include <coretypes.h>
-#include <tree.h>
-#include <tree-iterator.h>
-#include <tree-pass.h>
-#include <pass_manager.h>
-#include <context.h>
-#include <iostream>
+#include "my-pass.h"
 
 int plugin_is_GPL_compatible = 0;
 
@@ -82,38 +74,6 @@ void new_pass(void *gcc_data, void *user_data) {
 
 //== ==//
 
-const pass_data my_pass =
-{
-  GIMPLE_PASS, /* type */
-  "my_pass", /* name */
-  OPTGROUP_NONE, /* optinfo_flags */
-  TV_NONE, /* tv_id */
-  0, /* properties_required */
-  0, /* properties_provided */
-  0, /* properties_destroyed */
-  0, /* todo_flags_start */
-  0, /* todo_flags_finish */
-};
-
-// New pass. no additional functionality yet
-class my_opt_pass : public gimple_opt_pass {
-public:
-  my_opt_pass(gcc::context *ctxt) : gimple_opt_pass(my_pass, ctxt) {}
-
-  virtual unsigned int execute(function *fun) {
-
-    // TODO: analysis/optimization on fun.
-    //       inspect execute on other passes. Also
-    //       look for other passes to go before/after.
-    std::cerr << "my_opt_pass\n";
-    return 0;
-  }
-
-  virtual opt_pass *clone() override {
-    return this;
-  }
-
-};
 
 int plugin_init(struct plugin_name_args *plugin_info, struct plugin_gcc_version *version) {
 
