@@ -15,7 +15,6 @@ unsigned int my_opt_pass::execute(function *fun) {
   } else {
     std::cerr << "                     cfg is !NULL\n";
   }
-
   return 0;
 }
 

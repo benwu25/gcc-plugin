@@ -100,9 +100,9 @@ int plugin_init(struct plugin_name_args *plugin_info, struct plugin_gcc_version 
 
   rpi.pass = new my_opt_pass(ctxt);
   rpi.pass->static_pass_number = 8000;
-  rpi.reference_pass_name = "cfg";
+  rpi.reference_pass_name = "*warn_unused_result";
   rpi.ref_pass_instance_number = 0;
-  rpi.pos_op = PASS_POS_INSERT_AFTER;
+  rpi.pos_op = PASS_POS_INSERT_BEFORE;
 
   register_callback(plugin_info->base_name,
                     PLUGIN_PASS_MANAGER_SETUP,
