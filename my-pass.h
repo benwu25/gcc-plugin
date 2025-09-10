@@ -29,4 +29,3 @@ public:
 
   virtual opt_pass *clone() override;
 };
-
