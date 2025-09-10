@@ -37,7 +37,8 @@ void execute_pass(void *gcc_data, void *user_data) {
   if (pass == NULL) {
     std::cerr << "no execute pass data\n";
   }
-  std::cout << "executing pass # " << pass->static_pass_number << "\n";
+  std::cerr << "executing pass # " << pass->static_pass_number << "\n";
+  std::cerr << "  " << pass->name << "\n";
   switch (pass->type) {
     case GIMPLE_PASS:
     {
