@@ -1,6 +1,6 @@
 #include "my-pass.h"
 
-unsigned int my_opt_pass::execute(function *fun) {
+unsigned my_opt_pass::execute(function *fun) {
   // TODO: analysis/optimization on fun.
   //       inspect execute on other passes. Also
   //       look for other passes to go before/after.

@@ -25,7 +25,7 @@ class my_opt_pass : public gimple_opt_pass {
 public:
   my_opt_pass(gcc::context *ctxt) : gimple_opt_pass(my_pass, ctxt) {}
 
-  virtual unsigned int execute(function *fun) override;
+  virtual unsigned execute(function *fun) override;
 
   virtual opt_pass *clone() override;
 };
